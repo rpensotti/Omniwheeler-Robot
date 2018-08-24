@@ -40,12 +40,9 @@ setAllDutyCycle(duty)
 
 def command(cmd):
     global duty
-    if cmd == "quit":
-        GPIO.cleanup()
-        sys.exit(0)
 
     # Key 'r' rotate Omniweeler clockwise
-    elif cmd == "rotate_c":
+    if cmd == "rotate_c":
         GPIO.output(7, False)
         GPIO.output(11, True)
         GPIO.output(13, False)
@@ -200,8 +197,8 @@ keyboard.add_hotkey("right", command, args=("right",))
 keyboard.add_hotkey("up", command, args=("up",))
 keyboard.add_hotkey("down", command, args=("down",))
 keyboard.add_hotkey("s", command, args=("stop",))
-keyboard.add_hotkey("q", command, args=("quit",))
 keyboard.add_hotkey("equal", command, args=("duty+",))
 keyboard.add_hotkey("minus", command, args=("duty-",))
 
-keyboard.wait()
+keyboard.wait('esc')
+GPIO.cleanup()
