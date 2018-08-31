@@ -171,8 +171,8 @@ def command(cmd):
         os.system('./vc_start.sh')
     elif cmd == "video_off":
         os.system('./vc_stop.sh')
-    # Key 'p'  Start camera servo sweep
 
+    # Key 'p'  Start camera servo sweep
     elif cmd == "servo_sweep":
         setAllDutyCycle(7.5)
         time.sleep(1)
@@ -199,6 +199,18 @@ keyboard.add_hotkey("down", command, args=("down",))
 keyboard.add_hotkey("s", command, args=("stop",))
 keyboard.add_hotkey("equal", command, args=("duty+",))
 keyboard.add_hotkey("minus", command, args=("duty-",))
+
+keyboard.add_hotkey("t", command, args=("northeast",))
+keyboard.add_hotkey("e", command, args=("northwest",))
+keyboard.add_hotkey("b", command, args=("southeast",))
+keyboard.add_hotkey("c", command, args=("southwest",))
+
+keyboard.add_hotkey("r", command, args=("rotate_c",))
+keyboard.add_hotkey("l", command, args=("rotate_cc",))
+
+keyboard.add_hotkey("p", command, args=("servo_sweep",))
+
+
 
 keyboard.wait('esc')
 GPIO.cleanup()
